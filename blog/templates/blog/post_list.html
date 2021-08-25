@@ -1,18 +1,13 @@
-<html>
-    <head>
-        <title>Strona Michała</title>
-    </head>
-    <body>
-        <div>
-            <h1>Strona Michała</h1>
-        </div>
+{% extends 'blog/base.html' %}
 
-        {% for post in posts %}
-        <div>
-            <p>opublikowano: {{ post.published_date }}</p>
-            <h2><a href="">{{ post.title }}</a></h2>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                <p>opublikowano: {{ post.published_date }}</p>
+            </div>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
-        {% endfor %}
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}    
